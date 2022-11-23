@@ -9,9 +9,13 @@
     <title>sprint1</title>
 </head>
 
-<body onload="onInit()">
+<body onload="onInit()" oncontextmenu="return false">
     <h1>Minesweeper Game</h1>
-    <h3>Minesweeper Game</h3>
+    <h3>Click smiley to restart game</h3>
+
+    <div class="smiley" onclick="restartGame()">😊</div>
+    <div class="timer">Timer <span class="min">00</span>:<span class="sec">00</span></div>
+
     <!-- <button onclick="myFunction()">Click me</button> -->
     <!-- <button onclick="onToggleGame(this)">Start!</button> -->
 

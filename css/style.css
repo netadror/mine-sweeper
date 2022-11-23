@@ -8,6 +8,11 @@ h1 {
     color: rgb(34, 106, 200);
 }
 
+h4 {
+    font-size: 20px;
+    margin: auto;
+}
+
 div {
     color: rgb(30, 54, 76);
     font-family: 'Courier New', Courier, monospace;
@@ -23,34 +28,60 @@ button {
     border: 10px dashed green;
 }
 
-/* .board {
-    left: 50px;
-    font-size: 30;
+board {
+    margin-left: 100px;
     text-align: center;
+}
+
+table {
+    margin: auto;
+    margin-top: 30px;
+    border: 5px solid rgb(228, 228, 228)
 }
 
 .board td {
-    background-color: rgba(127, 255, 212, 0.87);
+    background-color: rgba(255, 255, 255, 0.87);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding: 15px;
 }
 
 .board td:hover {
-    background-color: rgba(135, 206, 250, 0.779);
+    background-color: rgba(255, 149, 227, 0.779);
+    cursor: pointer;
 }
 
-.locked {
-    background-color: rgba(0, 0, 0, 0.391) !important;
-    color: white;
-} 
-cell {
-    width: 40px;
-    height: 40px;
-    text-align: center;
+.smiley {
+    font-size: 40px;
+    /* border: 2px solid black; */
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    background-color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-top: 50px;
 }
 
-.cell img {
-    width: 25px;
-    height: auto;
-
+.smiley:hover {
+    background-color: rgba(255, 149, 227, 0.779);
 }
 
-*/
+.timer {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 20px;
+    font-size: 24px;
+    width: 60px;
+    height: 20px;
+    margin: auto;
+}
+
+.MINE {
+    background-color: rgba(255, 0, 0, 0.779);
+}
+
+/* .MARK {
+    background-color: rgba(143, 5, 81, 0.779);
+} */

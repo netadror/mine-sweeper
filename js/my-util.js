@@ -33,6 +33,7 @@ function renderBoard(board) {
             strHTML += `<td class="${className}" ${cellData} onclick="onCellClicked(this,${i},${j})">${cell}</td>`
         }
         strHTML += '</tr>\n'
+
     }
     var elBoard = document.querySelector('.board')
     elBoard.innerHTML = strHTML
