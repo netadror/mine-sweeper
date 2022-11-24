@@ -1,15 +1,16 @@
 body {
     text-align: center;
-    background-color: rgb(138, 187, 230);
+    background-color: rgb(217, 237, 255);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 h1 {
-    color: rgb(34, 106, 200);
+    color: rgb(25, 94, 129);
+    margin-top: 40px;
 }
 
-h4 {
-    font-size: 20px;
+h3 {
+    font-size: 24px;
     margin: auto;
 }
 
@@ -20,6 +21,14 @@ div {
 
 .game-container {
     margin: auto;
+    width: 600px;
+    background-color: rgba(167, 209, 246, 0.636);
+    padding: 20px 100px 30px 100px;
+    border-radius: 20px;
+}
+
+.menu {
+    margin-bottom: 40px;
 }
 
 board {
@@ -29,16 +38,16 @@ board {
 
 table {
     margin: auto;
-    margin-top: 30px;
-    border: 5px solid rgb(228, 228, 228)
+    margin-top: 120px;
+    border: 10px solid rgb(203, 203, 203)
 }
 
 .board td {
     background-color: rgba(255, 255, 255, 0.87);
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
     font-size: 18px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -57,8 +66,8 @@ table {
     background-color: white;
     border-radius: 50px;
     cursor: pointer;
-    margin-bottom: 10px;
-    margin-top: 50px;
+    margin-bottom: 40px;
+    margin-top: 20px;
 }
 
 .smiley:hover,
@@ -75,35 +84,32 @@ button:hover {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding: 20px;
     font-size: 22px;
-    width: 30px;
+    width: 50px;
     height: 20px;
     float: left;
-    margin-left: 360px;
+    line-height: 30px;
+    margin-left: 80px;
     text-align: center;
 }
 
 .min,
 .sec,
 .livesCount,
-.level-text {
+.mines-text,
+.marked-text {
     color: rgb(25, 94, 129);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 800px;
 }
 
-.lives {
+.lives,
+.mines,
+.marked {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding: 20px;
     font-size: 22px;
-    width: 30px;
-    height: 20px;
-    margin-left: 20px;
-    float: left;
-}
-
-.level {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding: 20px;
-    font-size: 22px;
-    width: 30px;
+    width: 50px;
+    line-height: 30px;
     height: 20px;
     margin-left: 20px;
     float: left;
@@ -121,15 +127,29 @@ button {
     cursor: pointer;
 }
 
+button:focus {
+    background-color: rgb(13, 49, 67);
+    color: white
+}
+
 .level-header {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-bottom: 10px;
 }
 
+.gameover-title {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 20px;
+    font-size: 22px;
+    height: 20px;
+    margin: auto;
+}
+
 .footer {
-    margin-top: 150px;
+    background-color: rgb(217, 237, 255);
     font-size: 24;
-    padding: 30px;
+    padding: 60px;
+    margin: auto;
     font-size: 22px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

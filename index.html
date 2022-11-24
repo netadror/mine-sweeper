@@ -11,8 +11,8 @@
 
 <body onload="onInit()" oncontextmenu="return false">
     <h1>Minesweeper Game</h1>
-    <h3>Click smiley to restart game</h3>
-
+    <h3>Get those MINES!</h3>
+    <div class="gameover-title"></div>
     <div class="smiley" onclick="restartGame()">😊</div>
     <!-- table -->
     <div class="game-container">
@@ -20,21 +20,24 @@
         <button class="btnLevel easy" onclick="changeLevel(4)">Beginner</button>
         <button class="btnLevel pro" onclick="changeLevel(8)">Medium</button>
         <button class="btnLevel hard" onclick="changeLevel(12)">Expert</button>
+
+        <div class="menu">
+            <div class="timer">Time <span class="min">00</span>:<span class="sec">00</span></div>
+            <div class="lives">Lives <span class="livesCount">1</span></div>
+            <div class="mines">Mines <span class="mines-text">2</span></div>
+            <div class="marked">Flagged <span class="marked-text">0</span></div>
+        </div>
         <table border="1" cellpadding="10">
             <tbody class="board">
                 <tr></tr>
                 <tr></tr>
             </tbody>
         </table>
-        <div class="menu">
-            <div class="timer">Timer<br><span class="min">00</span>:<span class="sec">00</span></div>
-            <div class="lives">Lives<br><span class="livesCount">3</span></div>
-            <div class="level">Level<br><span class="level-text">Easy</span></div>
-        </div>
 
     </div>
     <div class="footer">Neta Dror 2022</div>
     <script src="js/main.js"></script>
+
 </body>
 
 </html>
