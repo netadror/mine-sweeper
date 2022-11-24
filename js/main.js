@@ -22,7 +22,7 @@ var gBoard = {
 var gLevel = {
     SIZE: 4,
     MINES: 2,
-    LIVES: 1,
+    LIVES: 3,
 }
 var gGame = {
     isOn: false,
@@ -325,7 +325,7 @@ function getClassName(location) {
 function changeLevel(level) {
     // console.log(level)
     gLevel.SIZE = level
-    if (level === 4) gLevel.MINES = 2, gLevel.LIVES = 1
+    if (level === 4) gLevel.MINES = 2, gLevel.LIVES = 3
     if (level === 8) gLevel.MINES = 14, gLevel.LIVES = 3
     if (level === 12) gLevel.MINES = 32, gLevel.LIVES = 3
 
@@ -344,7 +344,7 @@ function getRandomIntInclusive(min, max) {
 function resetGame() {
     //reset levels
     var level = gLevel.SIZE
-    if (level === 4) gLevel.MINES = 2, gLevel.LIVES = 1
+    if (level === 4) gLevel.MINES = 2, gLevel.LIVES = 3
     if (level === 8) gLevel.MINES = 14, gLevel.LIVES = 3
     if (level === 12) gLevel.MINES = 32, gLevel.LIVES = 3
 
