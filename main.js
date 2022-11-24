@@ -47,7 +47,7 @@ function createBoard() {
         for (var j = 0; j < gLevel.SIZE; j++) {
             board[i][j] = {
                 minesAroundCount: 0,
-                isShown: flase,
+                isShown: false,
                 isMine: false,
                 isMarked: false,
             }
