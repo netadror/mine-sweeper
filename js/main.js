@@ -8,6 +8,7 @@ const DEAD = '😵'
 const SMILEY = '😊'
 
 var gInterval
+var gIsWin = false
 
 
 // model
@@ -33,6 +34,7 @@ function onInit() {
     addBomb(gLevel.MINES)
     renderBoard(gBoard)
     gGame.isOn = true
+    console.log(gBoard)
     // placebombs(gLevel.MINES, gBoard)
     // console.log('gLevel.LIVES', gLevel.LIVES)
 }
@@ -43,7 +45,7 @@ function createBoard() {
         for (var j = 0; j < gLevel.SIZE; j++) {
             board[i][j] = {
                 minesAroundCount: 0,
-                isShown: true,
+                isShown: false,
                 isMine: false,
                 isMarked: false,
             }
@@ -166,23 +168,24 @@ function leftClicked(elCell, i, j) {
         }
         // if no MINE
     } else {
-        elCell.style.backgroundColor = 'lightgrey'
-        // console.log('elCell', elCell)
         if (gBoard[i][j].isMarked) return
-
-        if (!checkGameOver(elCell, i, j))
-
-            // check if mines around
-            gBoard[i][j].isShown = true
-        var minesAround = setMinesNegsCount(i, j, gBoard)
+        // if (gBoard[i][j].isShown) return
         gGame.shownCount++
+        gBoard[i][j].isShown = true
         // console.log('gGame.shownCount', gGame.shownCount)
+        elCell.style.backgroundColor = 'lightgrey'
 
+        if (checkGameOver(elCell, i, j)) {
+            console.log('checkGameOver is true')
+            gIsWin = true
+            gameOver()
+        }
+        // check if mines around
+        var minesAround = setMinesNegsCount(i, j, gBoard)
         if (minesAround === 0) {
             elCell.classList.add('zero')
             // elCell.innerHTML = EMPTY
-            // expandShown(gBoard, elCell, i, j)
-
+            expandShown(gBoard, elCell, i, j)
         } else {
             // console.log('minesAround', minesAround)
             elCell.innerHTML = minesAround
@@ -202,10 +205,14 @@ function rightClicked(elCell, i, j) {
         gBoard[i][j].isMarked = true
         elCell.innerHTML = MARK
         gGame.markedCount++
+        if (checkGameOver()) {
+            gIsWin = true
+            gameOver()
+        }
+        //update DOM
+        var flagCounter = document.querySelector('.marked-text')
+        flagCounter.innerText = gGame.markedCount
     }
-    //update DOM
-    var flagCounter = document.querySelector('.marked-text')
-    flagCounter.innerText = gGame.markedCount
 }
 function timer() {
     //sec
@@ -225,21 +232,37 @@ function timer() {
     }
 
 }
+function expandShown(gBoard, elCell, i, j) {
+    // open all cells around without bombs
+    // TODO:
+    // find locations of cells around
+    // turn background to grey
+    // mark all cells as gBoard.IsShown
+    // add count to gGame.shownCount
+}
 function gameOver() {
     gGame.isOn = false
     clearInterval(gInterval)
+    if (gIsWin) {
+        var gameoverTitle = document.querySelector('.gameover-title')
+        gameoverTitle.innerText = 'YOU WIN!!! Click smiley to restart game'
+        var gameBg = document.querySelector('.game-container')
+        gameBg.style.backgroundImage = 'url("../img/confetti.gif")'
+    }
 
-    // show all mines on screen
-    var smiley = document.querySelector('.MINE')
-    smiley.innerHTML = MINE
+    if (!gIsWin) {
+        // show all mines on scren
+        var mines = document.querySelectorAll('.MINE')
+        mines.innerHTML = MINE
 
-    // show game over text
-    var gameoverTitle = document.querySelector('.gameover-title')
-    gameoverTitle.innerText = 'GAME OVER! Click smiley to restart game'
+        // show game over text
+        var gameoverTitle = document.querySelector('.gameover-title')
+        gameoverTitle.innerText = 'GAME OVER! Click smiley to restart game'
 
-    // change smiley
-    var smiley = document.querySelector('.smiley')
-    smiley.innerHTML = DEAD
+        // change smiley
+        var smiley = document.querySelector('.smiley')
+        smiley.innerHTML = DEAD
+    }
 }
 function resetTimer() {
     clearInterval(gInterval);
@@ -253,6 +276,7 @@ function restartGame() {
     smiley.innerHTML = SMILEY
     var gameoverTitle = document.querySelector('.gameover-title')
     gameoverTitle.innerText = ''
+    gIsWin = false
     resetTimer()
     resetGame()
     onInit()
@@ -298,11 +322,13 @@ function resetGame() {
     if (level === 8) gLevel.MINES = 14, gLevel.LIVES = 3
     if (level === 12) gLevel.MINES = 32, gLevel.LIVES = 3
 
-    // user menu
+    // user menu + bg
     var minesCounter = document.querySelector('.mines-text')
     minesCounter.innerText = gLevel.MINES
     var livesCounter = document.querySelector('.livesCount')
     livesCounter.innerText = gLevel.LIVES
+    var gameBg = document.querySelector('.game-container')
+    gameBg.style.backgroundImage = 'none'
 
     //resetGgame
     gGame = {
@@ -315,23 +341,47 @@ function resetGame() {
     flagCounter.innerText = gGame.markedCount
 }
 function checkGameOver(elCell, i, j) {
-    areBombsMarked()
+    // check if amount of unopened cells == gLevel.MINES (shownCount === cells - gLevel.MINES)
+    // console.log('gLevel.SIZE)*2', (gLevel.SIZE) * 2)
+    console.log('gGame.shownCount', gGame.shownCount)
+    var cellsNum = (gLevel.SIZE * gLevel.SIZE)
+    // console.log('cellsNum - gLevel.MINES', cellsNum - gLevel.MINES)
+    if (gGame.shownCount === cellsNum - gLevel.MINES) {
+        console.log('all cells opened')
 
-    // if (gBoard[i][j].isMarked && )
-
-}
-function areBombsMarked() {
-    for (var i = 0; i < gBoard.length; i++) {
-        for (var j = 0; j < gBoard[0].length; j++) {
-            if (gBoard[i][j].isMine) {
-                console.log('gBoard[i][j].isMine', gBoard[i][j].isMine)
-
-                var isMarked = (gBoard[i][j].isMarked) ? true : false
-            }
-
+        // check if all bombs are marked
+        if (areAllBombsMarked()) {
+            console.log('win!')
+            return true
         }
-
     }
-    console.log('isMarked', isMarked)
-    return isMarked
 }
+function areAllBombsMarked() {
+    var allMarked = false
+    var minesNum = gLevel.MINES
+    console.log('minesNum', minesNum)
+    console.log('gGame.markedCount', gGame.markedCount)
+
+    if (minesNum === gGame.markedCount) allMarked = true
+    console.log('allMarked', allMarked)
+    return allMarked
+}
+    // console.log('allMarked', allMarked)
+    // for (var i = 0; i < gBoard.length; i++) {
+    //     for (var j = 0; j < gBoard[0].length; j++) {
+    //         var cell = gBoard[i][j]
+    //         // console.log('cell', cell)
+    //         if (cell.isMine) {
+    //             minesNum++
+
+    //             // console.log('cell.isMine', cell.isMine)
+    //             // if (cell.isMarked) {
+    //             //     console.log('cell.isMarked', cell.isMarked)
+    //             //     allMarked = true
+    //             //     console.log('allMarked', allMarked)
+    //             // } else if (!cell.isMarked) {
+    //             //     console.log('cell is not marked')
+    //             // }
+    //         }
+    //     }
+    // }
