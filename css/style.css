@@ -18,19 +18,13 @@ div {
     font-family: 'Courier New', Courier, monospace;
 }
 
-button {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border: none;
-    width: 80px;
-    height: 30px;
-    color: white;
-    background-color: rgba(101, 210, 74, 0.775);
-    border: 10px dashed green;
+.game-container {
+    margin: auto;
 }
 
 board {
-    margin-left: 100px;
     text-align: center;
+    margin: auto;
 }
 
 table {
@@ -41,10 +35,12 @@ table {
 
 .board td {
     background-color: rgba(255, 255, 255, 0.87);
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     text-align: center;
     padding: 15px;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .board td:hover {
@@ -61,27 +57,79 @@ table {
     background-color: white;
     border-radius: 50px;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-top: 50px;
 }
 
-.smiley:hover {
+.smiley:hover,
+button:hover {
     background-color: rgba(255, 149, 227, 0.779);
-}
-
-.timer {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding: 20px;
-    font-size: 24px;
-    width: 60px;
-    height: 20px;
-    margin: auto;
+    color: rgb(17, 60, 82);
 }
 
 .MINE {
     background-color: rgba(255, 0, 0, 0.779);
 }
 
-/* .MARK {
-    background-color: rgba(143, 5, 81, 0.779);
-} */
+.timer {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 20px;
+    font-size: 22px;
+    width: 30px;
+    height: 20px;
+    float: left;
+    margin-left: 360px;
+    text-align: center;
+}
+
+.min,
+.sec,
+.livesCount,
+.level-text {
+    color: rgb(25, 94, 129);
+}
+
+.lives {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 20px;
+    font-size: 22px;
+    width: 30px;
+    height: 20px;
+    margin-left: 20px;
+    float: left;
+}
+
+.level {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 20px;
+    font-size: 22px;
+    width: 30px;
+    height: 20px;
+    margin-left: 20px;
+    float: left;
+}
+
+button {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: none;
+    padding: 12px;
+    color: white;
+    font-size: 18px;
+    background-color: rgb(25, 94, 129);
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.level-header {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 10px;
+}
+
+.footer {
+    margin-top: 150px;
+    font-size: 24;
+    padding: 30px;
+    font-size: 22px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

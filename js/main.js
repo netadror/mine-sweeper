@@ -8,6 +8,7 @@ const DEAD = '😵'
 const SMILEY = '😊'
 
 var gInterval
+
 // model
 var gBoard = {
     isShown: false,
@@ -26,7 +27,6 @@ var gGame = {
     secsPassed: 0,
     bombed: 0
 }
-
 function onInit() {
     gBoard = createBoard()
     renderBoard(gBoard)
@@ -67,7 +67,7 @@ function renderBoard(board) {
             }
             // console.log(board[i][j].isMine)
             var className = `cell cell-${i}-${j}`
-            className += (board[i][j].isMine) ? ' MINE' : ''
+            className += (board[i][j].isMine) ? ' MINE' : ' EMPTY'
             strHTML += `<td class="${className}" onmousedown="onCellClicked(this,${i},${j},event)">${cell}</td>`
         }
         strHTML += '</tr>\n'
@@ -115,8 +115,8 @@ function leftClicked(elCell, i, j) {
         gBoard[i][j].isShown = false
         elCell.innerHTML = MINE
         elCell.style.backgroundColor = 'red'
-
-        if (gGame.bombed === 2) {
+        console.log('gLevel.MINES', gLevel.MINES)
+        if (gGame.bombed === gLevel.MINES) {
             console.log('gGame.bombed', gGame.bombed)
             console.log('gLevel.MINES', gLevel.MINES)
             console.log('GAME OVER')
@@ -129,17 +129,23 @@ function leftClicked(elCell, i, j) {
         }
     }
     else {
+        elCell.style.backgroundColor = 'lightgrey'
         // check if mines around
         var minesAround = setMinesNegsCount(i, j, gBoard)
         if (minesAround === 0) {
-            elCell.innerHTML = minesAround
+            elCell.classList.add('zero')
+            // elCell.innerHTML = EMPTY
             // expandShown(gBoard, elCell, i, j)
 
         } else {
             // console.log('minesAround', minesAround)
             elCell.innerHTML = minesAround
-        }
+            if (minesAround === 1) elCell.style.color = 'blue'
+            if (minesAround === 2) elCell.style.color = 'green'
+            if (minesAround > 2) elCell.style.color = 'red'
 
+
+        }
     }
 }
 function rightClicked(elCell, i, j) {
@@ -172,6 +178,8 @@ function timer() {
 function gameOver() {
     gGame.isOn = false
     resetTimer()
+    var allMines = document.querySelectorAll('.MINE')
+
     var smiley = document.querySelector('.smiley')
     smiley.innerHTML = DEAD
 }
@@ -202,4 +210,11 @@ function expandShown(board, elCell, i, j) {
     // board[i][j].minesAroundCount = negsCount
     return negsCount
 }
+function changeLevel(level) {
+    console.log(level)
+    gLevel.SIZE = level
+    console.log('gLevel.SIZE', gLevel.SIZE)
+    restartGame()
+}
+
 //    board[i][j] = (Math.random() > 0.5) ? LIFE : '' --> another option

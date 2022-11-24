@@ -14,18 +14,26 @@
     <h3>Click smiley to restart game</h3>
 
     <div class="smiley" onclick="restartGame()">😊</div>
-    <div class="timer">Timer <span class="min">00</span>:<span class="sec">00</span></div>
-
-    <!-- <button onclick="myFunction()">Click me</button> -->
-    <!-- <button onclick="onToggleGame(this)">Start!</button> -->
-
     <!-- table -->
-    <table border="1" cellpadding="10">
-        <tbody class="board">
-            <tr></tr>
-            <tr></tr>
-        </tbody>
-    </table>
+    <div class="game-container">
+        <h3 class="level-header">Choose your level:</h3>
+        <button class="btnLevel easy" onclick="changeLevel(4)">Beginner</button>
+        <button class="btnLevel pro" onclick="changeLevel(8)">Medium</button>
+        <button class="btnLevel hard" onclick="changeLevel(12)">Expert</button>
+        <table border="1" cellpadding="10">
+            <tbody class="board">
+                <tr></tr>
+                <tr></tr>
+            </tbody>
+        </table>
+        <div class="menu">
+            <div class="timer">Timer<br><span class="min">00</span>:<span class="sec">00</span></div>
+            <div class="lives">Lives<br><span class="livesCount">3</span></div>
+            <div class="level">Level<br><span class="level-text">Easy</span></div>
+        </div>
+
+    </div>
+    <div class="footer">Neta Dror 2022</div>
     <script src="js/main.js"></script>
 </body>
 
