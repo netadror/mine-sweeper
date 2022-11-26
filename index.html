@@ -10,33 +10,42 @@
 </head>
 
 <body onload="onInit()" oncontextmenu="return false">
-    <h1>Minesweeper Game</h1>
-    <h3>Get those MINES!</h3>
-    <div class="gameover-title"></div>
-    <div class="smiley" onclick="restartGame()">😊</div>
-    <!-- table -->
+    <div class="top"></div>
+    <!-- game titles -->
     <div class="game-container">
-        <h3 class="level-header">Choose your level:</h3>
+        <h1>Minesweeper Game</h1>
+        <h3>Don't step on those MINES!</h3>
+        <div class="gameover-title"></div>
+        <div class="smiley" onclick="restartGame()">😊</div>
+        <!-- game levels -->
+        <h3 class="level-header">Choose your level</h3>
         <button class="btnLevel easy" onclick="changeLevel(4)">Beginner</button>
         <button class="btnLevel pro" onclick="changeLevel(8)">Medium</button>
         <button class="btnLevel hard" onclick="changeLevel(12)">Expert</button>
-
+        <!-- game menu -->
         <div class="menu">
-            <div class="timer">Time <span class="min">00</span>:<span class="sec">00</span></div>
-            <div class="lives">Lives <span class="livesCount">1</span></div>
-            <div class="mines">Mines <span class="mines-text">2</span></div>
-            <div class="marked">Flagged <span class="marked-text">0</span></div>
+            <div class="menuTitle timer">Time<br><span class="menuTitle minutes">00:</span><span
+                    class="menuTitle seconds">00</span></div>
+            <div class="menuTitle lives">Lives<br><span class="menuTitle livesCount">1</span></div>
+            <div class="menuTitle mines">Mines<br><span class="menuTitle mines-text">2</span></div>
+            <div class="menuTitle marked">Flagged<br><span class="menuTitle marked-text">0</span></div>
+            <div class="menuTitle hints" onclick="hints(this)">Hints<br><span class="menuTitle hints-text">💡💡💡</span>
+            </div>
         </div>
+        <!-- game board -->
         <table border="1" cellpadding="10">
             <tbody class="board">
                 <tr></tr>
                 <tr></tr>
             </tbody>
         </table>
-
+        <!-- dark mode -->
+        <button class="switch">toggle dark mode</button>
+        <div class="footer">Neta Dror 2022</div>
     </div>
-    <div class="footer">Neta Dror 2022</div>
+
     <script src="js/main.js"></script>
+    <script src="js/darkmode.js"></script>
 
 </body>
 
