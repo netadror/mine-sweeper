@@ -45,6 +45,7 @@ function onInit() {
     renderBoard(gBoard)
     gGame.isOn = true
     gMinesCounter = 0
+    gHints = 3
     console.log('gClicks', gClicks)
     // console.log(gBoard)
     // placebombs(gLevel.MINES, gBoard)
@@ -386,6 +387,11 @@ function changeLevel(level) {
     var livesCounter = document.querySelector('.livesCount')
     livesCounter.innerText = gLevel.LIVES
 
+    var lightBulbs = document.querySelector('.hints-text')
+    lightBulbs.innerHTML = '💡💡💡'
+    var gHints = 3
+    console.log('gHints', gHints)
+
     // console.log('gLevel.SIZE', gLevel.SIZE)
     restartGame()
 }
@@ -404,8 +410,15 @@ function resetGame() {
     minesCounter.innerText = gLevel.MINES
     var livesCounter = document.querySelector('.livesCount')
     livesCounter.innerText = gLevel.LIVES
+    // hints
+    var lightBulbs = document.querySelector('.hints-text')
+    lightBulbs.innerHTML = '💡💡💡'
+    var gHints = 3
+    console.log('gHints', gHints)
+
     var gameBg = document.querySelector('.game-container')
     gameBg.style.backgroundImage = 'none'
+
 
     //resetGgame
     gGame = {
@@ -480,6 +493,7 @@ function hints(elHint) {
     openCells()
     setTimeout(hintOn, 1000, elHint)
     gHints--
+    console.log('gHints', gHints)
 }
 function hintOn(elHint) {
     elHint.style.backgroundColor = ''
@@ -490,10 +504,10 @@ function openCells() {
     for (var i = 0; i < gBoard.length; i++) {
         for (var j = 0; j < gBoard[0].length; j++) {
             var currCell = gBoard[i][j]
-            console.log('currCell', currCell)
+            // console.log('currCell', currCell)
             // DOM
             var className = `.cell-${i}-${j}`
-            console.log('className', className)
+            // console.log('className', className)
             var elCell = document.querySelector(`${className}`)
             // console.log('elCell', elCell)
             elCell.style.backgroundColor = 'pink'
@@ -508,7 +522,7 @@ function closeCells() {
             var currCell = gBoard[i][j]
 
             var className = `.cell-${i}-${j}`
-            console.log('className', className)
+            // console.log('className', className)
             var elCell = document.querySelector(`${className}`)
             // console.log('elCell', elCell)
 
